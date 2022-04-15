@@ -8,12 +8,13 @@ from common.decorators import loger
 from common.settings import ACTION, PRESENCE, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, SENDER, DESTINATION, EXIT
 from common.utilites import getting, sending, creating_message, arg_parser
 from log import client_log_config
+from metaclasses import ClientMaker
 
 CLIENT_LOGGER = client_log_config.LOGGER
 
 
 @loger
-class Client:
+class Client(metaclass=ClientMaker):
     def __init__(self, address, port, account_name=None):
         self.address = address
         self.port = port

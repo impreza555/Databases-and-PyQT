@@ -7,12 +7,13 @@ from common.settings import ACTION, RESPONSE, MAX_CONNECTIONS, PRESENCE, TIME, A
 from common.utilites import getting, sending, arg_parser
 from log import server_log_config
 from descriptors import Port
+from metaclasses import ServerMaker
 
 SERVER_LOGGER = server_log_config.LOGGER
 
 
 @loger
-class Server:
+class Server(metaclass=ServerMaker):
     port = Port()
 
     def __init__(self, address, port):

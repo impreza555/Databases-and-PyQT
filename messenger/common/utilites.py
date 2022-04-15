@@ -79,9 +79,6 @@ def arg_parser(program):
         parser.add_argument('-a', '--address', default=DEFAULT_IP_ADDRESS,
                             type=str, nargs='?', help='IP адрес')
         args = parser.parse_args()
-        # if 1023 < args.port < 65536:
-        #     SERVER_LOGGER.error('Порт может быть в диапазоне от 1024 до 65535.')
-        #     exit(1)
     else:
         parser.add_argument('port', default=DEFAULT_PORT, type=int,
                             nargs='?', help='Номер порта')
@@ -90,7 +87,7 @@ def arg_parser(program):
         parser.add_argument('-n', '--name', default=None, type=str,
                             nargs='?', help='Имя пользователя')
         args = parser.parse_args()
-        # if 1023 < args.port < 65536:
-        #     CLIENT_LOGGER.error('Порт может быть в диапазоне от 1024 до 65535.')
-        #     exit(1)
+        if not 1023 < args.port < 65536:
+            CLIENT_LOGGER.error('Порт может быть в диапазоне от 1024 до 65535.')
+            exit(1)
     return args
