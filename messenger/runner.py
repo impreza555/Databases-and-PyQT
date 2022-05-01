@@ -15,8 +15,8 @@ def launch():
         if ACTION == 'q':
             break
         elif ACTION == 's':
-            process_list.append(Popen('python server.py', creationflags=CREATE_NEW_CONSOLE))
             number = int(input('Введите количество клиентов, которе нужно запустить: '))
+            process_list.append(Popen('python server.py', creationflags=CREATE_NEW_CONSOLE))
             for _ in range(number):
                 process_list.append(Popen(f'python client.py -n Test{_ + 1}', creationflags=CREATE_NEW_CONSOLE))
             LOGGER.debug(f'Запущено {number} клиентов:')

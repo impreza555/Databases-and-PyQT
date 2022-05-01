@@ -1,11 +1,9 @@
 import argparse
 import json
-import time
 from sys import exit
 
 from common.decorators import log
-from common.settings import MAX_PACKAGE_LENGTH, ENCODING, ACTION, PRESENCE, EXIT, TIME, ACCOUNT_NAME, \
-    MESSAGE, MESSAGE_TEXT, DEFAULT_PORT, DEFAULT_IP_ADDRESS, SENDER, DESTINATION
+from common.settings import MAX_PACKAGE_LENGTH, ENCODING
 from log import client_log_config
 from log import server_log_config
 
@@ -36,53 +34,19 @@ def sending(sock, message):
 
 
 @log
-def creating_message(action, sock, account_name):
-    message = None
-    if action == PRESENCE:
-        message = {
-            ACTION: action,
-            TIME: time.time(),
-            ACCOUNT_NAME: account_name
-        }
-        CLIENT_LOGGER.debug(f'Сформировано {PRESENCE} сообщение от пользователя {account_name}')
-    elif action == MESSAGE:
-        to_user = input('Введите получателя сообщения: ')
-        message_text = input('Введите сообщение для отправки или отправьте пустое сообщение'
-                             ' для завершения работы: ')
-        if not message_text:
-            sock.close()
-            CLIENT_LOGGER.info('Завершение работы по команде пользователя.')
-            exit(0)
-        message = {
-            ACTION: action,
-            SENDER: account_name,
-            DESTINATION: to_user,
-            TIME: time.time(),
-            MESSAGE_TEXT: message_text
-        }
-        CLIENT_LOGGER.debug(f'Сформировано сообщение : {message} для пользователя {to_user}')
-    elif action == EXIT:
-        message = {
-            ACTION: action,
-            TIME: time.time(),
-            ACCOUNT_NAME: account_name
-        }
-    return message
-
-
-@log
-def arg_parser(program):
+def arg_parser(program, default_port, default_address):
     parser = argparse.ArgumentParser()
+    args = None
     if program == 'server':
-        parser.add_argument('-p', '--port', default=DEFAULT_PORT, type=int,
+        parser.add_argument('-p', '--port', default=default_port, type=int,
                             nargs='?', help='Номер порта')
-        parser.add_argument('-a', '--address', default=DEFAULT_IP_ADDRESS,
+        parser.add_argument('-a', '--address', default=default_address,
                             type=str, nargs='?', help='IP адрес')
         args = parser.parse_args()
-    else:
-        parser.add_argument('port', default=DEFAULT_PORT, type=int,
+    elif program == 'client':
+        parser.add_argument('port', default=default_port, type=int,
                             nargs='?', help='Номер порта')
-        parser.add_argument('address', default=DEFAULT_IP_ADDRESS,
+        parser.add_argument('address', default=default_address,
                             type=str, nargs='?', help='IP адрес')
         parser.add_argument('-n', '--name', default=None, type=str,
                             nargs='?', help='Имя пользователя')

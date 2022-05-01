@@ -19,9 +19,13 @@ ENCODING = 'utf-8'
 # Текущий уровень логирования
 LOGGING_LEVEL = logging.DEBUG
 
+# База данных для хранения данных сервера:
+SERVER_CONFIG = 'server_dist.ini'
+
 # Протокол JIM основные ключи:
 ACTION = 'action'
 TIME = 'time'
+USER = 'user'
 ACCOUNT_NAME = 'account_name'
 SENDER = 'from'
 DESTINATION = 'to'
@@ -33,3 +37,13 @@ EXIT = 'exit'
 MESSAGE_TEXT = 'message_text'
 RESPONSE = 'response'
 ERROR = 'error'
+GET_CONTACTS = 'get_contacts'
+LIST_INFO = 'data_list'
+REMOVE_CONTACT = 'remove'
+ADD_CONTACT = 'add'
+USERS_REQUEST = 'get_users'
+
+# Словари - ответы:
+RESPONSE_200 = {RESPONSE: 200}
+RESPONSE_202 = {RESPONSE: 202, LIST_INFO: None}
+RESPONSE_400 = {RESPONSE: 400, ERROR: None}
