@@ -294,8 +294,6 @@ class Client(metaclass=ClientMaker):
                 print(self.help)
 
     def start(self):
-        # if not self.name:
-        #     self.name = input('Введите имя пользователя: ')
         try:
             transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             transport.settimeout(1)
