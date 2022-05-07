@@ -1,7 +1,8 @@
 import argparse
 import json
-from sys import exit
+from sys import exit, path
 
+path.append('../')
 from common.decorators import log
 from common.settings import MAX_PACKAGE_LENGTH, ENCODING
 from log import client_log_config

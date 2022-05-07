@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QMessageBox, QApplication
 
 from common.settings import RESPONSE_200, RESPONSE_202, RESPONSE_400, \
     ACTION, PRESENCE, MESSAGE, EXIT, GET_CONTACTS, ADD_CONTACT, REMOVE_CONTACT, USERS_REQUEST, \
-    TIME, ACCOUNT_NAME, SENDER, DESTINATION, USER, ERROR, MESSAGE_TEXT, LIST_INFO
+    TIME, ACCOUNT_NAME, SENDER, DESTINATION, USER, ERROR, MESSAGE_TEXT, LIST_INFO, DEFAULT_PORT
 from common.utilites import getting, sending, arg_parser
 from common.decorators import loger
 from log import server_log_config
@@ -42,12 +42,12 @@ class Server(threading.Thread, metaclass=ServerMaker):
     def process(self, message, client):
         global new_connection
         SERVER_LOGGER.debug(f'Разбор сообщения {message} от клиента')
-        if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
-                and ACCOUNT_NAME in message:
-            if message[ACCOUNT_NAME] not in self.names.keys():
-                self.names[message[ACCOUNT_NAME]] = client
+        if ACTION in message and message[ACTION] == PRESENCE \
+                and TIME in message and USER in message:
+            if message[USER][ACCOUNT_NAME] not in self.names.keys():
+                self.names[message[USER][ACCOUNT_NAME]] = client
                 client_ip, client_port = client.getpeername()
-                self.database.user_login(message[ACCOUNT_NAME], client_ip, client_port)
+                self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
                 sending(client, RESPONSE_200)
                 with conflag_lock:
                     new_connection = True
@@ -61,8 +61,14 @@ class Server(threading.Thread, metaclass=ServerMaker):
         elif ACTION in message and message[ACTION] == MESSAGE and DESTINATION in message \
                 and TIME in message and SENDER in message and MESSAGE_TEXT in message \
                 and self.names[message[SENDER]] == client:
-            self.messages.append(message)
-            self.database.process_message(message[SENDER], message[DESTINATION])
+            if message[DESTINATION] in self.names:
+                self.messages.append(message)
+                self.database.process_message(message[SENDER], message[DESTINATION])
+                sending(client, RESPONSE_200)
+            else:
+                response = RESPONSE_400
+                response[ERROR] = 'Пользователь не зарегистрирован на сервере.'
+                sending(client, response)
             return
         elif ACTION in message and message[ACTION] == EXIT and ACCOUNT_NAME in message \
                 and self.names[message[ACCOUNT_NAME]] == client:
@@ -74,18 +80,18 @@ class Server(threading.Thread, metaclass=ServerMaker):
             with conflag_lock:
                 new_connection = True
             return
-        elif ACTION in message and message[ACTION] == GET_CONTACTS and ACCOUNT_NAME in message and \
-                self.names[message[ACCOUNT_NAME]] == client:
+        elif ACTION in message and message[ACTION] == GET_CONTACTS and USER in message \
+                and self.names[message[USER]] == client:
             response = RESPONSE_202
-            response[LIST_INFO] = self.database.get_contacts(message[ACCOUNT_NAME])
+            response[LIST_INFO] = self.database.get_contacts(message[USER])
             sending(client, response)
-        elif ACTION in message and message[ACTION] == ADD_CONTACT and ACCOUNT_NAME in message and \
-                USER in message and self.names[message[ACCOUNT_NAME]] == client:
-            self.database.add_contact(message[ACCOUNT_NAME], message[USER])
+        elif ACTION in message and message[ACTION] == ADD_CONTACT and ACCOUNT_NAME in message \
+                and USER in message and self.names[message[USER]] == client:
+            self.database.add_contact(message[USER], message[ACCOUNT_NAME])
             sending(client, RESPONSE_200)
         elif ACTION in message and message[ACTION] == REMOVE_CONTACT and ACCOUNT_NAME in message and \
-                USER in message and self.names[message[ACCOUNT_NAME]] == client:
-            self.database.remove_contact(message[ACCOUNT_NAME], message[USER])
+                USER in message and self.names[message[USER]] == client:
+            self.database.remove_contact(message[USER], message[ACCOUNT_NAME])
             sending(client, RESPONSE_200)
         elif ACTION in message and message[ACTION] == USERS_REQUEST and ACCOUNT_NAME in message \
                 and self.names[message[ACCOUNT_NAME]] == client:
@@ -113,6 +119,7 @@ class Server(threading.Thread, metaclass=ServerMaker):
                 f'отправка сообщения невозможна.')
 
     def run(self):
+        global new_connection
         SERVER_LOGGER.info(f'Запущен сервер. '
                            f'Адрес(а) с которого(ых) принимаются подключения:'
                            f' {"любой" if not self.address else self.address}, '
@@ -155,15 +162,20 @@ class Server(threading.Thread, metaclass=ServerMaker):
                                 del self.names[name]
                                 break
                         self.clients.remove(client_with_message)
+                        with conflag_lock:
+                            new_connection = True
             for message in self.messages:
                 try:
                     self.mailing_of_messages(message, send_data_lst)
-                except Exception as err:
+                except (ConnectionAbortedError, ConnectionError,
+                        ConnectionResetError, ConnectionRefusedError):
                     SERVER_LOGGER.info(f'Связь с клиентом с именем {message[DESTINATION]}'
-                                       f' была потеряна. {err}')
+                                       f' была потеряна.')
                     self.clients.remove(self.names[message[DESTINATION]])
                     self.database.user_logout(message[DESTINATION])
                     del self.names[message[DESTINATION]]
+                    with conflag_lock:
+                        new_connection = True
             self.messages.clear()
             if err_lst:
                 for client_with_error in err_lst:
@@ -172,10 +184,23 @@ class Server(threading.Thread, metaclass=ServerMaker):
                     self.clients.remove(client_with_error)
 
 
-def main():
+def config_load():
     config = configparser.ConfigParser()
     dir_path = os.path.dirname(os.path.realpath(__file__))
     config.read(f"{dir_path}/{'server.ini'}")
+    if 'SETTINGS' in config:
+        return config
+    else:
+        config.add_section('SETTINGS')
+        config.set('SETTINGS', 'Default_port', str(DEFAULT_PORT))
+        config.set('SETTINGS', 'Listen_Address', '')
+        config.set('SETTINGS', 'Database_path', '')
+        config.set('SETTINGS', 'Database_file', 'server_db.db3')
+        return config
+
+
+def main():
+    config = config_load()
     attr = arg_parser('server', config['SETTINGS']['Default_port'],
                       config['SETTINGS']['Listen_Address'])
     listen_address = attr.address
