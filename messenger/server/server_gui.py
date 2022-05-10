@@ -34,6 +34,7 @@ class MainWindow(QMainWindow):
         self.main_ui.statusbarServer.showMessage('Сервер запущен')
         self.timer = QTimer()
         self.timer.timeout.connect(self.gui_create_model)
+        self.timer.timeout.connect(self.create_stat_model)
         self.timer.start(1000)
         self.main_ui.refreshAction.triggered.connect(self.gui_create_model)
         self.main_ui.configAction.triggered.connect(self.server_config)

@@ -125,7 +125,7 @@ class ClientTransport(threading.Thread, QObject):
                         sending(self.transport, my_ans)
                         self.process_server_ans(getting(self.transport))
             except (OSError, JSONDecodeError) as err:
-                CLIENT_LOGGER.debug(f'Ошибка соединения.', exc_info=err)
+                CLIENT_LOGGER.debug('Ошибка соединения.', exc_info=err)
                 raise ServerError('Сбой соединения в процессе авторизации.')
 
     def process_server_ans(self, message):
