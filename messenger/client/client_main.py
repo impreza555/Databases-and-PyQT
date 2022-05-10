@@ -128,17 +128,6 @@ class ClientTransport(threading.Thread, QObject):
                 CLIENT_LOGGER.debug(f'Ошибка соединения.', exc_info=err)
                 raise ServerError('Сбой соединения в процессе авторизации.')
 
-    # def create_presence(self):
-    #     out = {
-    #         ACTION: PRESENCE,
-    #         TIME: time.time(),
-    #         USER: {
-    #             ACCOUNT_NAME: self.username
-    #         }
-    #     }
-    #     CLIENT_LOGGER.debug(f'Сформировано {PRESENCE} сообщение для пользователя {self.username}')
-    #     return out
-
     def process_server_ans(self, message):
         """
         Метод обработчик поступающих сообщений с сервера.
@@ -308,6 +297,7 @@ class ClientTransport(threading.Thread, QObject):
         CLIENT_LOGGER.debug('Запущен процесс - приёмник сообщений с сервера.')
         while self.running:
             time.sleep(1)
+            message = None
             with socket_lock:
                 try:
                     self.transport.settimeout(0.5)

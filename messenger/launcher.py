@@ -13,9 +13,12 @@ while True:
         process.append(Popen('python server.py',
                              creationflags=CREATE_NEW_CONSOLE))
     elif action == 'k':
+        print('Убедитесь, что на сервере зарегистрировано необходимое'
+              ' количество клиентов с паролем 123456.')
+        print('Первый запуск может быть достаточно долгим из-за генерации ключей!')
         clients_count = int(input('Введите количество тестовых клиентов для запуска: '))
         for i in range(clients_count):
-            process.append(Popen(f'python client_main.py -n test{i + 1}', cwd=path,
+            process.append(Popen(f'python client_main.py -n test{i + 1} -p 123456', cwd=path,
                                  creationflags=CREATE_NEW_CONSOLE))
     elif action == 'x':
         while process:
