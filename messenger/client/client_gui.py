@@ -2,13 +2,14 @@ import sys
 
 from PyQt5.QtCore import Qt, pyqtSlot
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
-from PyQt5.QtWidgets import QDialog, qApp, QApplication, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QDialog, qApp, QMainWindow, QMessageBox, QApplication
+from Crypto.Cipher import PKCS1_OAEP
 
 sys.path.append('../')
 from log import client_log_config
 from common.errors import ServerError
 from client_main_ui import Ui_ClientMainWindow
-from start_dialog_ui import Ui_StartDialog
+from client.start_dialog_ui import Ui_StartDialog
 from add_contact_dialog_ui import Ui_AddContact
 from del_contact_dialog_ui import Ui_DelContact
 
@@ -62,6 +63,9 @@ class AddContact(QDialog):
 
 
 class DelContact(QDialog):
+    """
+    Диалог для удаления контакта
+    """
     def __init__(self, database):
         super().__init__()
         self.database = database
@@ -74,10 +78,20 @@ class DelContact(QDialog):
 
 
 class ClientMainWindow(QMainWindow):
-    def __init__(self, transport, database):
+    """
+    Класс основного окна приложения
+    """
+    def __init__(self, transport, database, keys):
+        """
+        Инициализация основного окна
+        :param transport: socket - транспорт
+        :param database: object - база данных
+        :param keys: object - ключи
+        """
         super().__init__()
         self.transport = transport
         self.database = database
+        self.decrypter = PKCS1_OAEP.new(keys)
         self.main_ui = Ui_ClientMainWindow()
         self.main_ui.setupUi(self)
         self.main_ui.actionExit.triggered.connect(qApp.exit)
@@ -98,6 +112,10 @@ class ClientMainWindow(QMainWindow):
         self.show()
 
     def set_disabled_input(self):
+        """
+        Метод делающий поля ввода неактивными
+        :return: None
+        """
         self.main_ui.labelNewMessage.setText('Для выбора получателя'
                                              ' дважды кликните на нем в окне контактов.')
         self.main_ui.textEditMessage.clear()
@@ -108,6 +126,11 @@ class ClientMainWindow(QMainWindow):
         self.main_ui.textEditMessage.setDisabled(True)
 
     def history_list_update(self):
+        """
+        Метод заполняющий соответствующий QListView
+        историей переписки с текущим собеседником.
+        :return: None
+        """
         list_messages = sorted(self.database.get_history(self.current_chat),
                                key=lambda item: item[3])
         if not self.history_model:
@@ -135,10 +158,18 @@ class ClientMainWindow(QMainWindow):
         self.main_ui.listViewMessages.scrollToBottom()
 
     def select_active_user(self):
+        """
+        Метод обработчик события двойного клика по списку контактов.
+        :return: None
+        """
         self.current_chat = self.main_ui.listViewContacts.currentIndex().data()
         self.set_active_user()
 
     def set_active_user(self):
+        """
+        Метод активации чата с собеседником.
+        :return: None
+        """
         self.main_ui.labelNewMessage.setText(f'Введите сообщение для {self.current_chat}:')
         self.main_ui.pushButtonClearMessage.setDisabled(False)
         self.main_ui.pushButtonSendMessage.setDisabled(False)
@@ -234,6 +265,11 @@ class ClientMainWindow(QMainWindow):
 
     @pyqtSlot(str)
     def message(self, sender):
+        """
+        Обработка полученных сообщений
+        :param sender:
+        :return:
+        """
         if sender == self.current_chat:
             self.history_list_update()
         else:

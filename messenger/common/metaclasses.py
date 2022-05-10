@@ -36,7 +36,6 @@ class ClientMaker(type):
                 pass
             else:
                 for i in instruction:
-                    # print(i)
                     if i.opname in ('LOAD_GLOBAL', 'LOAD_METHOD'):
                         if i.argval not in methods:
                             methods.append(i.argval)
