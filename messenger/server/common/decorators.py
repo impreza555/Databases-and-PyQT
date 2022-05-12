@@ -2,8 +2,8 @@ import socket
 import sys
 
 sys.path.append('../')
-from log import client_log_config
-from log import server_log_config
+from server.log import client_log_config
+from server.log import server_log_config
 
 
 def log(func):
@@ -69,7 +69,7 @@ def login_required(func):
     """
     def checker(*args, **kwargs):
         from server.server_main import Server
-        from common.settings import ACTION, PRESENCE
+        from server.common.settings import ACTION, PRESENCE
         if isinstance(args[0], Server):
             found = False
             for arg in args:

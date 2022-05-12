@@ -1,4 +1,4 @@
-from log import server_log_config
+from client.log import server_log_config
 from sys import exit
 
 SERVER_LOGGER = server_log_config.LOGGER

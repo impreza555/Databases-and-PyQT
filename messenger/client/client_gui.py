@@ -8,11 +8,11 @@ from PyQt5.QtWidgets import QDialog, qApp, QMainWindow, QMessageBox, QLineEdit
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 
-from common.settings import MESSAGE_TEXT, SENDER
+from client.common.settings import MESSAGE_TEXT, SENDER
 
 sys.path.append('../')
-from log import client_log_config
-from common.errors import ServerError
+from client.log import client_log_config
+from client.common.errors import ServerError
 from client.client_main_ui import Ui_ClientMainWindow
 from client.start_dialog_ui import Ui_StartDialog
 from client.add_contact_dialog_ui import Ui_AddContact

@@ -8,11 +8,11 @@ sys.path.append('../')
 from client.client_db import ClientDB
 from client.client_gui import StartDialog, ClientMainWindow
 from client.client_main import ClientTransport
-from common.decorators import log
-from common.errors import ServerError
-from common.settings import DEFAULT_PORT, DEFAULT_IP_ADDRESS
-from common.utilites import arg_parser
-from log import client_log_config
+from client.common.decorators import log
+from client.common.errors import ServerError
+from client.common.settings import DEFAULT_PORT, DEFAULT_IP_ADDRESS
+from client.common.utilites import arg_parser
+from client.log import client_log_config
 
 CLIENT_LOGGER = client_log_config.LOGGER
 

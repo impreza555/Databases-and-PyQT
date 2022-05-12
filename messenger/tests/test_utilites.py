@@ -3,8 +3,8 @@ import sys
 import unittest
 
 sys.path.append(os.path.join(os.getcwd(), '..'))
-from common.settings import USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
-from common.utilites import Encoder, Message
+from server.common.settings import USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
+from server.common.utilites import Encoder, Message
 
 test_dict_send = {
     ACTION: PRESENCE,

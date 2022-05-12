@@ -2,11 +2,11 @@ import os
 import sys
 import unittest
 
-from common.utilites import arg_parser
+from client.client_main import ClientTransport
+from client.common.utilites import arg_parser
 
 sys.path.append(os.path.join(os.getcwd(), '..'))
-from common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
-from client import Client
+from client.common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
 
 
 class TestClass(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestClass(unittest.TestCase):
         attr = arg_parser('client')
         connect_address = attr.address
         connect_port = attr.port
-        self.client = Client(connect_address, connect_port, 'Guest')
+        self.client = ClientTransport(connect_address, connect_port, 'Guest')
 
     def test_def_presence(self):
         test = self.client.presence()

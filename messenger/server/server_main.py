@@ -10,14 +10,14 @@ import threading
 from json import JSONDecodeError
 
 sys.path.append('../')
-from common.settings import RESPONSE_200, RESPONSE_202, RESPONSE_400, RESPONSE_511, \
+from server.common.settings import RESPONSE_200, RESPONSE_202, RESPONSE_400, RESPONSE_511, \
     ACTION, PRESENCE, MESSAGE, EXIT, GET_CONTACTS, ADD_CONTACT, REMOVE_CONTACT, \
     USERS_REQUEST, TIME, ACCOUNT_NAME, SENDER, DESTINATION, USER, ERROR, \
     MESSAGE_TEXT, LIST_INFO, MAX_CONNECTIONS, DATA, RESPONSE, PUBLIC_KEY, \
     PUBLIC_KEY_REQUEST, RESPONSE_205
-from common.utilites import getting, sending, arg_parser
-from common.decorators import loger, login_required
-from log import server_log_config
+from server.common.utilites import getting, sending
+from server.common.decorators import loger, login_required
+from client.log import server_log_config
 from server.descriptors import Port
 
 SERVER_LOGGER = server_log_config.LOGGER
