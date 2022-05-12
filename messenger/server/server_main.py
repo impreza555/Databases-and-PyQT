@@ -1,5 +1,4 @@
 import binascii
-import configparser
 import hmac
 import os
 import sys
@@ -9,26 +8,22 @@ import socket
 import threading
 
 from json import JSONDecodeError
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication
 
 sys.path.append('../')
 from common.settings import RESPONSE_200, RESPONSE_202, RESPONSE_400, RESPONSE_511, \
     ACTION, PRESENCE, MESSAGE, EXIT, GET_CONTACTS, ADD_CONTACT, REMOVE_CONTACT, \
-    USERS_REQUEST, TIME, ACCOUNT_NAME, SENDER, DESTINATION, \
-    USER, ERROR, MESSAGE_TEXT, LIST_INFO, DEFAULT_PORT, MAX_CONNECTIONS, \
-    DATA, RESPONSE, PUBLIC_KEY, PUBLIC_KEY_REQUEST, RESPONSE_205
+    USERS_REQUEST, TIME, ACCOUNT_NAME, SENDER, DESTINATION, USER, ERROR, \
+    MESSAGE_TEXT, LIST_INFO, MAX_CONNECTIONS, DATA, RESPONSE, PUBLIC_KEY, \
+    PUBLIC_KEY_REQUEST, RESPONSE_205
 from common.utilites import getting, sending, arg_parser
-from common.decorators import loger, log, login_required
+from common.decorators import loger, login_required
 from log import server_log_config
 from server.descriptors import Port
-from server.server_db import ServerDB
-from server.server_gui import MainWindow
 
 SERVER_LOGGER = server_log_config.LOGGER
 
 
-# @loger
+@loger
 class Server(threading.Thread):
     """
     Основной класс сервера. Принимает соединения, словари - пакеты
@@ -303,61 +298,3 @@ class Server(threading.Thread):
                         SERVER_LOGGER.debug('Получение данных из клиентского исключения.',
                                             exc_info=err)
                         self.remove_client(client_with_message)
-
-
-@log
-def config_load():
-    """
-    Парсер конфигурационного ini файла.
-    :return: object - объект конфигурации.
-    """
-    config = configparser.ConfigParser()
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    config.read(f"{dir_path}/{'server.ini'}")
-    if 'SETTINGS' in config:
-        return config
-    else:
-        config.add_section('SETTINGS')
-        config.set('SETTINGS', 'Default_port', str(DEFAULT_PORT))
-        config.set('SETTINGS', 'Listen_Address', '')
-        config.set('SETTINGS', 'Database_path', '')
-        config.set('SETTINGS', 'Database_file', 'server_db.db3')
-        return config
-
-
-@log
-def main():
-    """
-    Главная функция программы.
-    :return: None.
-    """
-    config = config_load()
-    attr = arg_parser('server', config['SETTINGS']['Default_port'],
-                      config['SETTINGS']['Listen_Address'])
-    listen_address = attr.address
-    listen_port = attr.port
-    gui_flag = attr.no_gui
-    database = ServerDB(
-        os.path.join(config['SETTINGS']['Database_path'],
-                     config['SETTINGS']['Database_file']))
-    server = Server(listen_address, listen_port, database)
-    server.daemon = True
-    server.start()
-    if gui_flag:
-        while True:
-            command = input('Введите exit для завершения работы сервера.')
-            if command == 'exit':
-                server.running = False
-                server.join()
-                break
-    else:
-        server_app = QApplication(sys.argv)
-        server_app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
-        main_window = MainWindow(database, server, config)
-        main_window.show()
-        server_app.exec_()
-        server.running = False
-
-
-if __name__ == '__main__':
-    main()

@@ -4,7 +4,7 @@ from json import JSONDecodeError
 
 from PyQt5.QtCore import Qt, pyqtSlot
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
-from PyQt5.QtWidgets import QDialog, qApp, QMainWindow, QMessageBox, QApplication, QLineEdit
+from PyQt5.QtWidgets import QDialog, qApp, QMainWindow, QMessageBox, QLineEdit
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 
@@ -13,10 +13,10 @@ from common.settings import MESSAGE_TEXT, SENDER
 sys.path.append('../')
 from log import client_log_config
 from common.errors import ServerError
-from client_main_ui import Ui_ClientMainWindow
+from client.client_main_ui import Ui_ClientMainWindow
 from client.start_dialog_ui import Ui_StartDialog
-from add_contact_dialog_ui import Ui_AddContact
-from del_contact_dialog_ui import Ui_DelContact
+from client.add_contact_dialog_ui import Ui_AddContact
+from client.del_contact_dialog_ui import Ui_DelContact
 
 CLIENT_LOGGER = client_log_config.LOGGER
 
