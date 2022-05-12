@@ -72,7 +72,7 @@ class Ui_AddContact(object):
 
     def retranslateUi(self, AddContact):
         _translate = QtCore.QCoreApplication.translate
-        AddContact.setWindowTitle(_translate("AddContact", "Выберете контак для добавления"))
+        AddContact.setWindowTitle(_translate("AddContact", "Выберете контакт для добавления"))
         self.labelSelectUser.setText(_translate("AddContact", "Выберите контакт для добавления:"))
         self.pushButtonAddUser.setText(_translate("AddContact", "Добавить"))
         self.pushButtonRefresh.setText(_translate("AddContact", "Обновить список"))

@@ -28,7 +28,7 @@ from server.server_gui import MainWindow
 SERVER_LOGGER = server_log_config.LOGGER
 
 
-@loger
+# @loger
 class Server(threading.Thread):
     """
     Основной класс сервера. Принимает соединения, словари - пакеты

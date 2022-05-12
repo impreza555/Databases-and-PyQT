@@ -70,7 +70,7 @@ class ClientTransport(threading.Thread, QObject):
 
     def connection_init(self, port, ip):
         """
-        Метод отвечающий за устанновку соединения с сервером.
+        Метод отвечающий за установку соединения с сервером.
         :param port: int - порт для соединения с сервером.
         :param ip: str - адрес сервера.
         :return: None.

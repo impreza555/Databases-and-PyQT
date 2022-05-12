@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
     """
     Класс главного окна сервера
     """
+
     def __init__(self, database, server, config):
         """
         Конструктор класса главного окна сервера
@@ -122,6 +123,7 @@ class ConfigWindow(QDialog):
     """
     Класс окна настроек сервера
     """
+
     def __init__(self, config):
         """
         Конструктор класса окна настроек сервера
@@ -184,6 +186,7 @@ class RegisterUser(QDialog):
     """
     Класс окна регистрации пользователя
     """
+
     def __init__(self, database, server):
         """
         Конструктор класса окна регистрации пользователя
@@ -231,7 +234,7 @@ class RegisterUser(QDialog):
                 'sha512', passwd_bytes, salt, 10000
             )
             self.database.add_user(
-                self.reg_ui.lineEditUserName.text(),binascii.hexlify(passwd_hash)
+                self.reg_ui.lineEditUserName.text(), binascii.hexlify(passwd_hash)
             )
             self.messages.information(
                 self, 'Успех', 'Пользователь успешно зарегистрирован.'
@@ -244,6 +247,7 @@ class DelUserDialog(QDialog):
     """
     Класс окна удаления пользователя
     """
+
     def __init__(self, database, server):
         """
         Конструктор класса окна удаления пользователя
@@ -267,7 +271,7 @@ class DelUserDialog(QDialog):
         :return: None
         """
         self.del_ui.comboBoxSelectUser.addItems(
-            [item[0]for item in self.database.users_list()]
+            [item[0] for item in self.database.users_list()]
         )
 
     def remove_user(self):

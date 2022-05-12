@@ -16,7 +16,7 @@ class TestClass(unittest.TestCase):
         connect_port = attr.port
         self.client = Client(connect_address, connect_port, 'Guest')
 
-    def test_def_presense(self):
+    def test_def_presence(self):
         test = self.client.presence()
         test[TIME] = 5.2
         self.assertEqual(test, {ACTION: PRESENCE, TIME: 5.2, ACCOUNT_NAME: 'Guest'})

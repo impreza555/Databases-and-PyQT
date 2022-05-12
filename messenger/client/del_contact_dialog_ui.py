@@ -69,7 +69,7 @@ class Ui_DelContact(object):
 
     def retranslateUi(self, DelContact):
         _translate = QtCore.QCoreApplication.translate
-        DelContact.setWindowTitle(_translate("DelContact", "Выберете контак для удаления"))
+        DelContact.setWindowTitle(_translate("DelContact", "Выберете контакт для удаления"))
         self.labelSelectUser.setText(_translate("DelContact", "Выберите контакт для удаления:"))
         self.pushButtonCancel.setText(_translate("DelContact", "Отмена"))
         self.pushButtonDelUser.setText(_translate("DelContact", "Удалить"))

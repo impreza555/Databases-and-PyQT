@@ -334,25 +334,3 @@ class ServerDB:
                                    self.UsersHistory.accepted
                                    ).join(self.Users)
         return query.all()
-
-# # TODO: допилить потом отладку для феншуя.
-# if __name__ == '__main__':
-#     db = ServerDB('test.db3')
-#     db.user_login('Вася', '192.168.1.4', 8888, 'блаблабла')
-#     db.user_login('Зина', '192.168.1.5', 7777, 'блаблаблабла')
-#     print(db.users_list())
-#     print(db.active_users_list())
-#     db.user_logout('Вася')
-#     print(db.users_list())
-#     print(db.active_users_list())
-#     db.user_logout('Зина')
-#     print(db.users_list())
-#     print(db.active_users_list())
-#     print(db.login_history('Вася'))
-#     db.add_contact('test2', 'test1')
-#     db.add_contact('test1', 'test3')
-#     db.add_contact('test1', 'test6')
-#     db.remove_contact('test1', 'test3')
-#     print(db.users_list())
-#     db.process_message('Зина', 'Вася')
-#     print(db.message_history())

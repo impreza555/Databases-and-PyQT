@@ -26,6 +26,7 @@ class StartDialog(QDialog):
     Класс реализующий стартовый диалог с запросом логина и пароля
     пользователя.
     """
+
     def __init__(self):
         """
         Конструктор класса.
@@ -41,7 +42,7 @@ class StartDialog(QDialog):
 
     def click(self):
         """
-        Метод обрабтчик кнопки ОК.
+        Метод обработчик кнопки ОК.
         :return: None
         """
         if self.start_ui.lineEditUserName.text():
@@ -55,6 +56,7 @@ class AddContact(QDialog):
     Предлагает пользователю список возможных контактов и
     добавляет выбранный в контакты.
     """
+
     def __init__(self, transport, database):
         """
         Конструктор диалога добавления пользователя в список контактов.
@@ -104,6 +106,7 @@ class DelContact(QDialog):
     """
     Класс диалога для удаления контакта
     """
+
     def __init__(self, database):
         """
         Инициализация класса
@@ -123,6 +126,7 @@ class ClientMainWindow(QMainWindow):
     """
     Класс основного окна приложения
     """
+
     def __init__(self, transport, database, keys):
         """
         Инициализация основного окна
@@ -157,7 +161,7 @@ class ClientMainWindow(QMainWindow):
 
     def set_disabled_input(self):
         """
-        Метод делающий поля ввода неактивными
+        Метод делающий поля ввода не активными.
         :return: None
         """
         self.main_ui.labelNewMessage.setText('Для выбора получателя'
