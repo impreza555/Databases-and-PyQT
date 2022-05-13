@@ -186,7 +186,7 @@ class ClientDB:
 
 
 if __name__ == '__main__':
-    path_db = os.path.abspath(os.path.join(os.path.dirname(__file__), './'))
+    path_db = os.path.abspath(os.path.join(os.path.dirname(__file__), '/'))
     db = ClientDB('test1', path_db)
     for i in ['test3', 'test4', 'test5']:
         db.add_contact(i)

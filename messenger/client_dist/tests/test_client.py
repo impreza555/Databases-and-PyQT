@@ -3,10 +3,10 @@ import sys
 import unittest
 
 from client.client_main import ClientTransport
-from client.common.utilites import arg_parser
+from common.utilites import arg_parser
 
 sys.path.append(os.path.join(os.getcwd(), '..'))
-from client.common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
+from common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
 
 
 class TestClass(unittest.TestCase):

@@ -29,7 +29,7 @@ while True:
     if action == "q":
         break
     elif action == "s":
-        process.append(get_subprocess("run_server.py"))
+        process.append(get_subprocess("server_dist/run_server.py"))
     elif action == 'k':
         print('Убедитесь, что на сервере зарегистрировано необходимо количество клиентов с паролем 123456.')
         print('Первый запуск может быть достаточно долгим из-за генерации ключей!')

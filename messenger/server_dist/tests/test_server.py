@@ -2,11 +2,11 @@ import os
 import sys
 import unittest
 
-from server.common.utilites import arg_parser
+from common.utilites import arg_parser
 from server.server_main import Server
 
-sys.path.append(os.path.join(os.getcwd(), '..'))
-from server.common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
+sys.path.append(os.path.join(os.getcwd(), '../'))
+from common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
 
 
 class TestServer(unittest.TestCase):

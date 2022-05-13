@@ -9,14 +9,14 @@ from json import JSONDecodeError
 from PyQt5.QtCore import pyqtSignal, QObject
 
 sys.path.append('../')
-from client.common.decorators import loger
-from client.common.errors import ServerError
-from client.common.settings import PRESENCE, RESPONSE, ERROR, ACTION, MESSAGE, \
+from common.decorators import loger
+from common.errors import ServerError
+from common.settings import PRESENCE, RESPONSE, ERROR, ACTION, MESSAGE, \
     EXIT, ADD_CONTACT, REMOVE_CONTACT, GET_CONTACTS, USERS_REQUEST, \
     MESSAGE_TEXT, LIST_INFO, SENDER, DESTINATION, TIME, ACCOUNT_NAME, \
     USER, PUBLIC_KEY, DATA, RESPONSE_511, PUBLIC_KEY_REQUEST
-from client.common.utilites import getting, sending
-from client.log import client_log_config
+from common.utilites import getting, sending
+from log import client_log_config
 
 CLIENT_LOGGER = client_log_config.LOGGER
 socket_lock = threading.Lock()

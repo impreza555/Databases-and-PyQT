@@ -2,11 +2,10 @@ import argparse
 import json
 from sys import exit, path
 
-path.append('../../')
-from server.common.decorators import log
-from server.common.settings import MAX_PACKAGE_LENGTH, ENCODING
-from client.log import client_log_config
-from client.log import server_log_config
+path.append('../')
+from common.decorators import log
+from common.settings import MAX_PACKAGE_LENGTH, ENCODING
+from log import server_log_config, client_log_config
 
 CLIENT_LOGGER = client_log_config.LOGGER
 SERVER_LOGGER = server_log_config.LOGGER

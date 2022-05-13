@@ -1,4 +1,3 @@
-import os
 import datetime
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, MetaData, Text
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,8 +10,6 @@ class ServerDB:
     Использует SQLite базу данных, реализован с помощью
     SQLAlchemy ORM и используется декларативный подход.
     """
-    PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
-    PATH = os.path.join(PATH, 'server_db.db3')
     Base = declarative_base()
 
     class Users(Base):
@@ -117,7 +114,7 @@ class ServerDB:
             self.sent = 0
             self.accepted = 0
 
-    def __init__(self, path=PATH):
+    def __init__(self, path):
         """
         Конструктор класса базы данных.
         :param path: str

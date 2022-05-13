@@ -6,9 +6,9 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 
 sys.path.append('../')
-from server.common.decorators import log
-from server.common.settings import DEFAULT_PORT
-from server.common.utilites import arg_parser
+from common.decorators import log
+from common.settings import DEFAULT_PORT
+from common.utilites import arg_parser
 from server.server_db import ServerDB
 from server.server_gui import MainWindow
 from server.server_main import Server

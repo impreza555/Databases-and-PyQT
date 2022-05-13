@@ -8,11 +8,11 @@ sys.path.append('../')
 from client.client_db import ClientDB
 from client.client_gui import StartDialog, ClientMainWindow
 from client.client_main import ClientTransport
-from client.common.decorators import log
-from client.common.errors import ServerError
-from client.common.settings import DEFAULT_PORT, DEFAULT_IP_ADDRESS
-from client.common.utilites import arg_parser
-from client.log import client_log_config
+from common.decorators import log
+from common.errors import ServerError
+from common.settings import DEFAULT_PORT, DEFAULT_IP_ADDRESS
+from common.utilites import arg_parser
+from log import client_log_config
 
 CLIENT_LOGGER = client_log_config.LOGGER
 
@@ -43,8 +43,7 @@ def main():
     CLIENT_LOGGER.info(
         f'Запущен клиент с парамерами: адрес сервера: {server_address} , '
         f'порт: {server_port}, имя пользователя: {client_name}')
-    path_db = os.path.abspath(os.path.join(os.path.dirname(__file__), './'))
-    dir_path = os.path.dirname(os.path.realpath(__file__))
+    dir_path = path_db = os.path.dirname(os.path.realpath(__file__))
     key_file = os.path.join(dir_path, f'{client_name}.key')
     if not os.path.exists(key_file):
         keys = RSA.generate(2048, os.urandom)
