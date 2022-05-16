@@ -9,5 +9,5 @@ setup(
     license="GPLv3",
     packages=find_packages(),
     install_requires=['PyQt5', 'sqlalchemy', 'pycryptodome'],
-    scripts=['client/run_client']
+    scripts=['client/client_run']
 )
