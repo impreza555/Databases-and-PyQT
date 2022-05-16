@@ -2,7 +2,7 @@ import os
 import sys
 import unittest
 
-sys.path.append(os.path.join(os.getcwd(), '../'))
+sys.path.append(os.path.join(os.getcwd(), '../../../client_dist/client/'))
 from common.settings import USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
 from common.utilites import Encoder, Message
 

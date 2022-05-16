@@ -5,7 +5,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication
 
-sys.path.append('../')
+sys.path.append('../../client_dist/')
 from common.decorators import log
 from common.settings import DEFAULT_PORT
 from common.utilites import arg_parser

@@ -4,7 +4,7 @@ import sys
 from Crypto.PublicKey import RSA
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
-sys.path.append('../')
+sys.path.append('../../')
 from client.client_db import ClientDB
 from client.client_gui import StartDialog, ClientMainWindow
 from client.client_main import ClientTransport

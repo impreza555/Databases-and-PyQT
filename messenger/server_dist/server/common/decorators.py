@@ -1,9 +1,8 @@
 import socket
 import sys
 
-sys.path.append('../')
-from log import client_log_config
-from log import server_log_config
+sys.path.append('../../../client_dist/client/')
+from log import client_log_config, server_log_config
 
 
 def log(func):
@@ -54,3 +53,34 @@ def loger(cls):
                 return attr
 
     return NewClass
+
+
+def login_required(func):
+    """
+    Декоратор, проверяющий, что клиент авторизован на сервере.
+    Проверяет, что передаваемый объект сокета находится в
+    списке авторизованных клиентов.
+    За исключением передачи словаря-запроса
+    на авторизацию. Если клиент не авторизован,
+    генерирует исключение TypeError
+    :param func: function
+    :return: function
+    """
+    def checker(*args, **kwargs):
+        from server.server_main import Server
+        from common.settings import ACTION, PRESENCE
+        if isinstance(args[0], Server):
+            found = False
+            for arg in args:
+                if isinstance(arg, socket.socket):
+                    for client in args[0].names:
+                        if args[0].names[client] == arg:
+                            found = True
+            for arg in args:
+                if isinstance(arg, dict):
+                    if ACTION in arg and arg[ACTION] == PRESENCE:
+                        found = True
+            if not found:
+                raise TypeError
+        return func(*args, **kwargs)
+    return checker

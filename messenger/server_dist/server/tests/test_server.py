@@ -5,7 +5,7 @@ import unittest
 from common.utilites import arg_parser
 from server.server_main import Server
 
-sys.path.append(os.path.join(os.getcwd(), '../'))
+sys.path.append(os.path.join(os.getcwd(), '../../../client_dist/client/'))
 from common.settings import RESPONSE, ERROR, ACCOUNT_NAME, TIME, ACTION, PRESENCE
 
 

@@ -2,8 +2,8 @@ import os
 from subprocess import Popen, CREATE_NEW_CONSOLE
 
 process = []
-client_path = os.path.abspath(os.path.join(os.path.dirname(__file__), './client/'))
-server_path = os.path.abspath(os.path.join(os.path.dirname(__file__), './server/'))
+client_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'client_dist/client/'))
+server_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'server_dist/server/'))
 
 
 def start_applications():
