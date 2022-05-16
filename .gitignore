@@ -1,2 +1,5 @@
 .idea/
 __pycache__/
+.dmypy.json
+/messenger/server_db.db3
+/UiFiles/
