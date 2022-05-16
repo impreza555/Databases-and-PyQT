@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>client - ядро приложения, а так же графический интерфейс. &#8212; документация Simple GeekMessenger 0.01</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="client">
+<h1>client - ядро приложения, а так же графический интерфейс.<a class="headerlink" href="#client" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="module-messenger.client_dist.client.add_contact_dialog_ui">
+<span id="add-contact-dialog-ui-py"></span><h2>add_contact_dialog_ui.py<a class="headerlink" href="#module-messenger.client_dist.client.add_contact_dialog_ui" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.add_contact_dialog_ui.Ui_AddContact">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger.client_dist.client.add_contact_dialog_ui.</span></span><span class="sig-name descname"><span class="pre">Ui_AddContact</span></span><a class="headerlink" href="#messenger.client_dist.client.add_contact_dialog_ui.Ui_AddContact" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.add_contact_dialog_ui.Ui_AddContact.retranslateUi">
+<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AddContact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.add_contact_dialog_ui.Ui_AddContact.retranslateUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.add_contact_dialog_ui.Ui_AddContact.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AddContact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.add_contact_dialog_ui.Ui_AddContact.setupUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger.client_dist.client.client_db">
+<span id="client-db-py"></span><h2>client_db.py - модуль для работы с базой данных.<a class="headerlink" href="#module-messenger.client_dist.client.client_db" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger.client_dist.client.client_db.</span></span><span class="sig-name descname"><span class="pre">ClientDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Класс - оболочка для работы с базой данных клиента.
+Использует SQLite базу данных, реализован с помощью
+SQLAlchemy ORM и используется декларативный подход.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.Base">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.Base" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The base class of the class hierarchy.</p>
+<p>When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.Base.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">MetaData()</span></em><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.Base.metadata" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.Base.registry">
+<span class="sig-name descname"><span class="pre">registry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;sqlalchemy.orm.decl_api.registry</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.Base.registry" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.Contacts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.Contacts" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="messenger.server_dist.server.html#messenger.server_dist.server.server_db.ServerDB.Base" title="sqlalchemy.orm.decl_api.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Base</span></code></a></p>
+<p>Класс - отображение для таблицы контактов.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.Contacts.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.Contacts.id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.Contacts.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.Contacts.name" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.KnownUsers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KnownUsers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.KnownUsers" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="messenger.server_dist.server.html#messenger.server_dist.server.server_db.ServerDB.Base" title="sqlalchemy.orm.decl_api.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Base</span></code></a></p>
+<p>Класс - отображение для таблицы всех пользователей.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.KnownUsers.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.KnownUsers.id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.KnownUsers.username">
+<span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.KnownUsers.username" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.MessageStat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MessageStat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.MessageStat" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="messenger.server_dist.server.html#messenger.server_dist.server.server_db.ServerDB.Base" title="sqlalchemy.orm.decl_api.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Base</span></code></a></p>
+<p>Класс - отображение для таблицы статистики переданных сообщений.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.MessageStat.contact">
+<span class="sig-name descname"><span class="pre">contact</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.MessageStat.contact" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.MessageStat.date">
+<span class="sig-name descname"><span class="pre">date</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.MessageStat.date" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.MessageStat.direction">
+<span class="sig-name descname"><span class="pre">direction</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.MessageStat.direction" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.MessageStat.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.MessageStat.id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.MessageStat.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.MessageStat.message" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.add_contact">
+<span class="sig-name descname"><span class="pre">add_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.add_contact" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод добавляющий контакт в базу данных.
+:param contact: str
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.add_users">
+<span class="sig-name descname"><span class="pre">add_users</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">users_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.add_users" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, заполняющий таблицу известных пользователей.
+:param users_list: list
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.check_contact">
+<span class="sig-name descname"><span class="pre">check_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.check_contact" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, проверяющий существует ли контакт.
+:param contact: str
+:return: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.check_user">
+<span class="sig-name descname"><span class="pre">check_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.check_user" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, проверяющий существует ли пользователь.
+:param user: str
+:return: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.contacts_clear">
+<span class="sig-name descname"><span class="pre">contacts_clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.contacts_clear" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, очищающий таблицу со списком контактов.
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.del_contact">
+<span class="sig-name descname"><span class="pre">del_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.del_contact" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, удаляющий определённый контакт.
+:param contact: str
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.get_contacts">
+<span class="sig-name descname"><span class="pre">get_contacts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.get_contacts" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, возвращающий список всех контактов.
+:return: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.get_history">
+<span class="sig-name descname"><span class="pre">get_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.get_history" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, возвращающий историю сообщений с определённым пользователем.
+:param contact: str
+:return: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.get_users">
+<span class="sig-name descname"><span class="pre">get_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.get_users" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод возвращающий список всех известных пользователей.
+:return: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_db.ClientDB.save_message">
+<span class="sig-name descname"><span class="pre">save_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_db.ClientDB.save_message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Метод, сохраняющий сообщение в базе данных.
+:param contact: str
+:param direction: str
+:param message: str
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="client-gui-py">
+<h2>client_gui.py - модуль графического интерфейса.<a class="headerlink" href="#client-gui-py" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="client-main-py">
+<h2>client_main.py - модуль ядра приложения.<a class="headerlink" href="#client-main-py" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="module-messenger.client_dist.client.client_main_ui">
+<span id="client-main-ui-py"></span><h2>client_main_ui.py<a class="headerlink" href="#module-messenger.client_dist.client.client_main_ui" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_main_ui.Ui_ClientMainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger.client_dist.client.client_main_ui.</span></span><span class="sig-name descname"><span class="pre">Ui_ClientMainWindow</span></span><a class="headerlink" href="#messenger.client_dist.client.client_main_ui.Ui_ClientMainWindow" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_main_ui.Ui_ClientMainWindow.retranslateUi">
+<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ClientMainWindow</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_main_ui.Ui_ClientMainWindow.retranslateUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.client_main_ui.Ui_ClientMainWindow.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ClientMainWindow</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.client_main_ui.Ui_ClientMainWindow.setupUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger.client_dist.client.del_contact_dialog_ui">
+<span id="del-contact-dialog-ui-py"></span><h2>del_contact_dialog_ui.py<a class="headerlink" href="#module-messenger.client_dist.client.del_contact_dialog_ui" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.del_contact_dialog_ui.Ui_DelContact">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger.client_dist.client.del_contact_dialog_ui.</span></span><span class="sig-name descname"><span class="pre">Ui_DelContact</span></span><a class="headerlink" href="#messenger.client_dist.client.del_contact_dialog_ui.Ui_DelContact" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.del_contact_dialog_ui.Ui_DelContact.retranslateUi">
+<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DelContact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.del_contact_dialog_ui.Ui_DelContact.retranslateUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.del_contact_dialog_ui.Ui_DelContact.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DelContact</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.del_contact_dialog_ui.Ui_DelContact.setupUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger.client_dist.client.start_dialog_ui">
+<span id="start-dialog-ui-py"></span><h2>start_dialog_ui.py<a class="headerlink" href="#module-messenger.client_dist.client.start_dialog_ui" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="messenger.client_dist.client.start_dialog_ui.Ui_StartDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">messenger.client_dist.client.start_dialog_ui.</span></span><span class="sig-name descname"><span class="pre">Ui_StartDialog</span></span><a class="headerlink" href="#messenger.client_dist.client.start_dialog_ui.Ui_StartDialog" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.start_dialog_ui.Ui_StartDialog.retranslateUi">
+<span class="sig-name descname"><span class="pre">retranslateUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">StartDialog</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.start_dialog_ui.Ui_StartDialog.retranslateUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="messenger.client_dist.client.start_dialog_ui.Ui_StartDialog.setupUi">
+<span class="sig-name descname"><span class="pre">setupUi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">StartDialog</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#messenger.client_dist.client.start_dialog_ui.Ui_StartDialog.setupUi" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-messenger.client_dist.client">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-messenger.client_dist.client" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Simple GeekMessenger</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, impreza555.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/messenger.client_dist.client.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
